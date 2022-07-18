@@ -147,12 +147,14 @@ private val coroutinesUseCases =
         )
     )
 
+const val flowUseCase1Description = "#1 Introduction to Flow"
+
 private val flowUseCases =
     UseCaseCategory(
         "Flow Use Cases",
         listOf(
             UseCase(
-                "Flow Use Case 1",
+                flowUseCase1Description,
                 FlowUseCase1Activity::class.java
             )
         )
