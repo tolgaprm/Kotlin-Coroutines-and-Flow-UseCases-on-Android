@@ -4,6 +4,7 @@ import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.FlowMockAp
 import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.Stock
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 interface StockPriceDataSource {
     val latestPrice: Flow<List<Stock>>
@@ -11,9 +12,10 @@ interface StockPriceDataSource {
 
 class NetworkStockPriceDataSource(mockApi: FlowMockApi) : StockPriceDataSource {
 
-    override val latestPrice: Flow<List<Stock>> = {
+    override val latestPrice: Flow<List<Stock>> = flow {
         while (true) {
-            mockApi.getCurrentStockPrices()
+            val currentStockList = mockApi.getCurrentStockPrices()
+            emit(currentStockList)
             delay(5_000)
         }
     }
