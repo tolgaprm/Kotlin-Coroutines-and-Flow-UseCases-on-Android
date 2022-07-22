@@ -149,7 +149,7 @@ private val coroutinesUseCases =
     )
 
 const val flowUseCase1Description = "#1 Flow Basics"
-const val flowUseCase2Description = "#2 Basic operators and exception handling"
+const val flowUseCase2Description = "#2 Basic operators"
 
 private val flowUseCases =
     UseCaseCategory(

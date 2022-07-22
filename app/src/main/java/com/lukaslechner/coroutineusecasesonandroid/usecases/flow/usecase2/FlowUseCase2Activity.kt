@@ -3,11 +3,12 @@ package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase2
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
-import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase1Description
+import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase2Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
+import kotlinx.coroutines.Dispatchers
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
 
@@ -17,7 +18,10 @@ class FlowUseCase2Activity : BaseActivity() {
     private val adapter = StockAdapter()
 
     private val viewModel: FlowUseCase2ViewModel by viewModels {
-        ViewModelFactory(NetworkStockPriceDataSource(mockApi(applicationContext)))
+        ViewModelFactory(
+            NetworkStockPriceDataSource(mockApi(applicationContext)),
+            Dispatchers.Default
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,5 +56,5 @@ class FlowUseCase2Activity : BaseActivity() {
         }
     }
 
-    override fun getToolbarTitle() = flowUseCase1Description
+    override fun getToolbarTitle() = flowUseCase2Description
 }

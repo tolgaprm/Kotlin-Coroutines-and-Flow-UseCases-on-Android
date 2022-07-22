@@ -13,7 +13,6 @@ fun mockApi(context: Context) =
                 path = "/current-stock-prices",
                 body = { Gson().toJson(fakeCurrentStockPrices(context)) },
                 status = 200,
-                delayInMs = 1500,
-                errorFrequencyInPercent = 50
+                delayInMs = 1500
             )
     )
