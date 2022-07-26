@@ -2,14 +2,17 @@ package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase3
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
 import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase3Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
+import kotlinx.coroutines.launch
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
+import timber.log.Timber
 
 class FlowUseCase3Activity : BaseActivity() {
 
@@ -25,10 +28,14 @@ class FlowUseCase3Activity : BaseActivity() {
         setContentView(binding.root)
         binding.recyclerView.adapter = adapter
 
-        viewModel.currentStockPriceAsLiveData.observe(this) { uiState ->
-            if (uiState != null) {
+        Timber.d("onCreate()")
+
+        lifecycleScope.launch {
+            viewModel.currentStockPriceAsFlow.collect { uiState ->
                 render(uiState)
             }
+        }.invokeOnCompletion { throwable ->
+            Timber.d("Coroutine completed: $throwable")
         }
     }
 
@@ -50,6 +57,16 @@ class FlowUseCase3Activity : BaseActivity() {
                 binding.progressBar.setGone()
             }
         }
+    }
+
+    override fun onStop() {
+        Timber.d("onStop()")
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        Timber.d("onDestroy()")
+        super.onDestroy()
     }
 
     override fun getToolbarTitle() = flowUseCase3Description
