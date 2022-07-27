@@ -31,7 +31,7 @@ class FlowUseCase3Activity : BaseActivity() {
         Timber.d("onCreate()")
 
         lifecycleScope.launch {
-            viewModel.currentStockPriceAsFlow.collect { uiState ->
+            viewModel.currentStockPriceAsSharedFlow.collect { uiState ->
                 render(uiState)
             }
         }.invokeOnCompletion { throwable ->
