@@ -9,21 +9,21 @@ class FlowUseCase3ViewModel(
     stockPriceDataSource: StockPriceDataSource
 ) : BaseViewModel<UiState>() {
 
-    private val _sharedFlow = MutableSharedFlow<UiState>(replay = 1)
-    val currentStockPriceAsSharedFlow = _sharedFlow.asSharedFlow()
-
-    init {
+    val currentStockPriceAsSharedFlow: Flow<UiState> =
         stockPriceDataSource
             .latestPrice
-            .onEach { stockList ->
-                _sharedFlow.emit(UiState.Success(stockList))
+            .map { stockList ->
+                UiState.Success(stockList) as UiState
             }
             .onStart {
-                _sharedFlow.emit(UiState.Loading)
+                emit(UiState.Loading)
             }
             .onCompletion { throwable ->
                 Timber.d("Flow has completed: $throwable")
             }
-            .launchIn(viewModelScope)
-    }
+            .shareIn(
+                scope = viewModelScope,
+                replay = 0,
+                started = SharingStarted.WhileSubscribed(5000)
+            )
 }
