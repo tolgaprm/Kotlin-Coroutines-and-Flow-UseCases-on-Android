@@ -9,7 +9,7 @@ class FlowUseCase3ViewModel(
     stockPriceDataSource: StockPriceDataSource
 ) : BaseViewModel<UiState>() {
 
-    private val _sharedFlow = MutableSharedFlow<UiState>()
+    private val _sharedFlow = MutableSharedFlow<UiState>(replay = 1)
     val currentStockPriceAsSharedFlow = _sharedFlow.asSharedFlow()
 
     init {
@@ -25,6 +25,5 @@ class FlowUseCase3ViewModel(
                 Timber.d("Flow has completed: $throwable")
             }
             .launchIn(viewModelScope)
-
     }
 }
