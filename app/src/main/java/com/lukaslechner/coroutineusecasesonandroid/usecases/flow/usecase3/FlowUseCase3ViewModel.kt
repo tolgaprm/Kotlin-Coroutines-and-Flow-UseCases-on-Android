@@ -23,7 +23,7 @@ class FlowUseCase3ViewModel(
             }
             .shareIn(
                 scope = viewModelScope,
-                replay = 0,
+                replay = 1,
                 started = SharingStarted.WhileSubscribed(5000)
             )
 }
