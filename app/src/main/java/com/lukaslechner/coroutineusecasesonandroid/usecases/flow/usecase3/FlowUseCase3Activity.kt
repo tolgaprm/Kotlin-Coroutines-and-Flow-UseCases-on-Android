@@ -2,7 +2,9 @@ package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase3
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
 import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase3Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
@@ -31,8 +33,10 @@ class FlowUseCase3Activity : BaseActivity() {
         Timber.d("onCreate()")
 
         lifecycleScope.launch {
-            viewModel.currentStockPriceAsSharedFlow.collect { uiState ->
-                render(uiState)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.currentStockPriceAsSharedFlow.collect { uiState ->
+                    render(uiState)
+                }
             }
         }.invokeOnCompletion { throwable ->
             Timber.d("Coroutine completed: $throwable")
