@@ -8,6 +8,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
 import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase4Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4.database.StockDatabase
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
@@ -22,7 +23,12 @@ class FlowUseCase4Activity : BaseActivity() {
     private val adapter = StockAdapter()
 
     private val viewModel: FlowUseCase4ViewModel by viewModels {
-        ViewModelFactory(NetworkStockPriceDataSource(mockApi(applicationContext)))
+        ViewModelFactory(
+            StockPriceRepository(
+                remoteDataSource = NetworkStockPriceDataSource(mockApi(applicationContext)),
+                localDataSource = StockDatabase.getInstance(applicationContext).stockDao()
+            )
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

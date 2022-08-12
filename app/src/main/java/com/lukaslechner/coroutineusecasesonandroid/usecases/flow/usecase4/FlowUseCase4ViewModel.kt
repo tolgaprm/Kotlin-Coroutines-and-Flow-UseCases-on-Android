@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.*
 import timber.log.Timber
 
 class FlowUseCase4ViewModel(
-    stockPriceDataSource: StockPriceDataSource
+    stockPriceRepository: StockPriceRepository
 ) : BaseViewModel<UiState>() {
 
     val currentStockPriceAsSharedFlow: Flow<UiState> =
