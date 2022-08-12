@@ -15,15 +15,12 @@ class FlowUseCase3ViewModel(
             .map { stockList ->
                 UiState.Success(stockList) as UiState
             }
-            .onStart {
-                emit(UiState.Loading)
-            }
             .onCompletion { throwable ->
                 Timber.d("Flow has completed: $throwable")
             }
-            .shareIn(
+            .stateIn(
                 scope = viewModelScope,
-                replay = 1,
+                initialValue = UiState.Loading,
                 started = SharingStarted.WhileSubscribed(5000)
             )
 }
