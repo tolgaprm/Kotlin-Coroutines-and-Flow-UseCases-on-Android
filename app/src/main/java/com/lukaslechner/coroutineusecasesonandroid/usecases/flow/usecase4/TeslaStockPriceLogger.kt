@@ -15,7 +15,7 @@ class TeslaStockPriceLogger(
 
     fun startLogging() {
         loggingJob = stockPriceRepository
-            .latestStockList
+            .latestStockListFromRoomFlow
             .onEach { stockList ->
                 val teslaStock = stockList.find { stock -> stock.name == "Tesla" }
                 Timber.d("Tesla Price: ${teslaStock?.currentPrice}")
