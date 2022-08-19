@@ -12,7 +12,7 @@ class FlowUseCase4ViewModel(
 ) : BaseViewModel<UiState>() {
 
     val latestStockList: Flow<UiState> = stockPriceRepository
-        .latestStockList
+        .latestStockListFromRoomFlow
         .map { stockList ->
             UiState.Success(stockList) as UiState
         }
@@ -21,5 +21,4 @@ class FlowUseCase4ViewModel(
             initialValue = UiState.Loading,
             started = SharingStarted.WhileSubscribed(5000)
         )
-
 }
