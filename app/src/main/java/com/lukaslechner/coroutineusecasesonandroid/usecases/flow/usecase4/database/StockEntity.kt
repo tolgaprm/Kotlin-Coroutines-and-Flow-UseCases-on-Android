@@ -25,6 +25,10 @@ fun List<StockEntity>.mapToUiModelList() = map {
     )
 }
 
+fun List<Stock>.mapToEntityList(): List<StockEntity> {
+    return this.map { it.mapToEntity() }
+}
+
 fun Stock.mapToEntity() =
     StockEntity(
         rank = this.rank,

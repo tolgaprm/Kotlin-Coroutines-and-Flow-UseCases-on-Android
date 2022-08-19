@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase2.database.StockEntity
 
 @Database(entities = [StockEntity::class], version = 1, exportSchema = false)
 abstract class StockDatabase : RoomDatabase() {

@@ -9,7 +9,7 @@ import timber.log.Timber
 
 class CoroutineUsecasesOnAndroidApplication : Application() {
 
-    private val applicationScope = CoroutineScope(SupervisorJob())
+    val applicationScope = CoroutineScope(SupervisorJob())
 
     val androidVersionRepository by lazy {
         val database = AndroidVersionDatabase.getInstance(applicationContext).androidVersionDao()
