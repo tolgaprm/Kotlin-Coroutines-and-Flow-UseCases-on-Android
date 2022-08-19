@@ -23,14 +23,23 @@ class FlowUseCase4Activity : BaseActivity() {
     private val binding by lazy { ActivityFlowUsecase1Binding.inflate(layoutInflater) }
     private val adapter = StockAdapter()
 
-    private val viewModel: FlowUseCase4ViewModel by viewModels {
-        ViewModelFactory(
-            StockPriceRepository(
-                remoteDataSource = NetworkStockPriceDataSource(mockApi(applicationContext)),
-                localDataSource = StockDatabase.getInstance(applicationContext).stockDao(),
-                appScope = (application as CoroutineUsecasesOnAndroidApplication).applicationScope
-            )
+    private val stockPriceRepository by lazy {
+        StockPriceRepository(
+            remoteDataSource = NetworkStockPriceDataSource(mockApi(applicationContext)),
+            localDataSource = StockDatabase.getInstance(applicationContext).stockDao(),
+            appScope = (application as CoroutineUsecasesOnAndroidApplication).applicationScope
         )
+    }
+
+    private val teslaStockPriceLogger by lazy {
+        TeslaStockPriceLogger(
+            stockPriceRepository,
+            (application as CoroutineUsecasesOnAndroidApplication).applicationScope
+        )
+    }
+
+    private val viewModel: FlowUseCase4ViewModel by viewModels {
+        ViewModelFactory(stockPriceRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +53,7 @@ class FlowUseCase4Activity : BaseActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel
                     .latestStockList
-                    .collect{ uiState ->
+                    .collect { uiState ->
                         render(uiState)
                     }
             }
