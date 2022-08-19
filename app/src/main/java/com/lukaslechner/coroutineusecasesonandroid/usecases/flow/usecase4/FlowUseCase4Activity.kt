@@ -80,8 +80,15 @@ class FlowUseCase4Activity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume()")
+        teslaStockPriceLogger.startLogging()
+    }
+
     override fun onStop() {
         Timber.d("onStop()")
+        teslaStockPriceLogger.stopLogging()
         super.onStop()
     }
 
