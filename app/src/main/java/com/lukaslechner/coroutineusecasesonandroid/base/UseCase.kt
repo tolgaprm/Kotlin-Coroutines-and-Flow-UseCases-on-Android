@@ -161,13 +161,13 @@ private val flowUseCases =
             UseCase(
                 flowUseCase1Description,
                 FlowUseCase3Activity::class.java
-            ),UseCase(
+            ), UseCase(
                 flowUseCase2Description,
                 FlowUseCase2Activity::class.java
-            ),UseCase(
+            ), UseCase(
                 flowUseCase3Description,
                 FlowUseCase3Activity::class.java
-            ),UseCase(
+            ), UseCase(
                 flowUseCase4Description,
                 FlowUseCase4Activity::class.java
             )
