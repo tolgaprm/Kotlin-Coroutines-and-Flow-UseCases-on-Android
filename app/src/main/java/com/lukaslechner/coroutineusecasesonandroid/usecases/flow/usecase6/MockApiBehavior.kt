@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6
 
 import android.content.Context
 import com.google.gson.Gson

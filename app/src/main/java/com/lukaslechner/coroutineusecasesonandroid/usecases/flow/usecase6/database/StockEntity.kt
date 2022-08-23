@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5.database
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
