@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lukaslechner.coroutineusecasesonandroid.R
 import com.lukaslechner.coroutineusecasesonandroid.databinding.RecyclerviewItemStockBinding
-import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.Currency
 import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.Stock
+import java.text.NumberFormat
 
 class StockAdapter: RecyclerView.Adapter<StockAdapter.ViewHolder>() {
 
@@ -16,6 +16,8 @@ class StockAdapter: RecyclerView.Adapter<StockAdapter.ViewHolder>() {
         field = value
         notifyDataSetChanged()
     }
+
+    private val formatter: NumberFormat = NumberFormat.getCurrencyInstance()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = RecyclerviewItemStockBinding.bind(view)
@@ -30,11 +32,9 @@ class StockAdapter: RecyclerView.Adapter<StockAdapter.ViewHolder>() {
         val stock = stockList?.get(position) ?: return@with
         rank.text = stock.rank.toString()
         name.text = stock.name
-        val currencySymbol = when (stock.currency) {
-            Currency.DOLLAR -> "$"
-            Currency.EURO -> "€"
-        }
-        currentPrice.text = "$currencySymbol${stock.currentPrice}"
+
+        val currentPriceFormatted: String = formatter.format(stock.currentPrice)
+        currentPrice.text = currentPriceFormatted
     }
 
     override fun getItemCount(): Int {
