@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
 import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase4Description
-import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
+import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase5Binding
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
@@ -15,10 +15,11 @@ import kotlinx.coroutines.launch
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
 import timber.log.Timber
+import java.text.NumberFormat
 
 class FlowUseCase4Activity : BaseActivity() {
 
-    private val binding by lazy { ActivityFlowUsecase1Binding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityFlowUsecase5Binding.inflate(layoutInflater) }
     private val adapter = StockAdapter()
 
     private val viewModel: FlowUseCase4ViewModel by viewModels {
@@ -53,6 +54,11 @@ class FlowUseCase4Activity : BaseActivity() {
                 binding.recyclerView.setVisible()
                 binding.lastUpdateTime.text =
                     "lastUpdateTime: ${LocalDateTime.now().toString(DateTimeFormat.fullTime())}"
+
+                val formatter: NumberFormat = NumberFormat.getCurrencyInstance()
+                val totalMarketCapFormatted: String = formatter.format(uiState.totalMarketCap)
+                binding.totalMarketCap.text = "totalMarketCap: $totalMarketCapFormatted"
+
                 adapter.stockList = uiState.stockList
                 binding.progressBar.setGone()
             }
