@@ -1,10 +1,10 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5
 
 import com.lukaslechner.coroutineusecasesonandroid.playground.structuredconcurrency.scope
 import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.Stock
-import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4.database.StockDao
-import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4.database.mapToEntityList
-import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4.database.mapToUiModelList
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5.database.StockDao
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5.database.mapToEntityList
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5.database.mapToUiModelList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*

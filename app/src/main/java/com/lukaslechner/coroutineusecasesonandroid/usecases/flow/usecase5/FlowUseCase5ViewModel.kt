@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5
 
 import androidx.lifecycle.viewModelScope
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseViewModel
@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class FlowUseCase4ViewModel(
+class FlowUseCase5ViewModel(
     stockPriceRepository: StockPriceRepository
 ) : BaseViewModel<UiState>() {
 

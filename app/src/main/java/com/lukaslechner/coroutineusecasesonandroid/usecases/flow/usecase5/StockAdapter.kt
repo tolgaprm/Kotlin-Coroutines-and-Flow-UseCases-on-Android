@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase4
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5
 
 import android.view.LayoutInflater
 import android.view.View
