@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecaseX
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,9 +7,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.lukaslechner.coroutineusecasesonandroid.CoroutineUsecasesOnAndroidApplication
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
-import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase6Description
+import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCaseXDescription
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
-import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6.database.StockDatabase
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecaseX.database.StockDatabase
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
@@ -18,7 +18,7 @@ import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
 import timber.log.Timber
 
-class FlowUseCase6Activity : BaseActivity() {
+class FlowUseCaseXActivity : BaseActivity() {
 
     private val binding by lazy { ActivityFlowUsecase1Binding.inflate(layoutInflater) }
     private val adapter = StockAdapter()
@@ -38,7 +38,7 @@ class FlowUseCase6Activity : BaseActivity() {
         )
     }
 
-    private val viewModel: FlowUseCase6ViewModel by viewModels {
+    private val viewModel: FlowUseCaseXViewModel by viewModels {
         ViewModelFactory(stockPriceRepository)
     }
 
@@ -97,5 +97,5 @@ class FlowUseCase6Activity : BaseActivity() {
         super.onDestroy()
     }
 
-    override fun getToolbarTitle() = flowUseCase6Description
+    override fun getToolbarTitle() = flowUseCaseXDescription
 }

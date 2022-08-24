@@ -116,7 +116,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".usecases.flow.usecase6.FlowUseCase6Activity"
+            android:name=".usecases.flow.usecaseX.FlowUseCaseXActivity"
             android:exported="true" />
 
     </application>

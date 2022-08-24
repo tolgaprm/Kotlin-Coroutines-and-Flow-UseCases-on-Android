@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecaseX
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

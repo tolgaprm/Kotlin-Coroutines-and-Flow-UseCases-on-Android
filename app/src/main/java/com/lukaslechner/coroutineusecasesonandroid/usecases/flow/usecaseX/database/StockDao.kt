@@ -1,4 +1,4 @@
-package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6.database
+package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecaseX.database
 
 import androidx.room.Dao
 import androidx.room.Insert
