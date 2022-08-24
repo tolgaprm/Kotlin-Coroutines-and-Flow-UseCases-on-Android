@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_dollar_24.xml" value="0.244" />
         <entry key="app/src/main/res/layout/activity_exceptionhandling.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/activity_flow_usecase1.xml" value="0.4846014492753623" />
         <entry key="app/src/main/res/layout/activity_flow_usecase5.xml" value="0.38813405797101447" />
         <entry key="app/src/main/res/layout/recyclerview_item_calculation_result.xml" value="0.33469202898550726" />
         <entry key="app/src/main/res/layout/recyclerview_item_stock.xml" value="0.4846014492753623" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.2536413862380713" />
+        <entry key="app/src/main/res/menu/flow_usecase_menu.xml" value="0.5134722928317235" />
       </map>
     </option>
   </component>

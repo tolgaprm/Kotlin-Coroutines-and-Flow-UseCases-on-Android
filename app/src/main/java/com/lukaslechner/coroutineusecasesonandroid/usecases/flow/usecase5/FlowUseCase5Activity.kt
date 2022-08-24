@@ -1,13 +1,18 @@
 package com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase5
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.L
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.lukaslechner.coroutineusecasesonandroid.R
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
 import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase5Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.Currency
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
@@ -20,6 +25,7 @@ class FlowUseCase5Activity : BaseActivity() {
 
     private val binding by lazy { ActivityFlowUsecase1Binding.inflate(layoutInflater) }
     private val adapter = StockAdapter()
+    private lateinit var menu: Menu
 
     private val viewModel: FlowUseCase5ViewModel by viewModels {
         ViewModelFactory(NetworkStockPriceDataSource(mockApi(applicationContext)))
@@ -29,6 +35,7 @@ class FlowUseCase5Activity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.recyclerView.adapter = adapter
+        setSupportActionBar(binding.toolbarLayout.toolbar)
 
         Timber.d("onCreate()")
 
@@ -54,6 +61,13 @@ class FlowUseCase5Activity : BaseActivity() {
                 binding.lastUpdateTime.text =
                     "lastUpdateTime: ${LocalDateTime.now().toString(DateTimeFormat.fullTime())}"
 
+                val currencyIcon = when (uiState.stockList.first().currency) {
+                    Currency.DOLLAR -> R.drawable.ic_euro_24
+                    Currency.EURO -> R.drawable.ic_dollar_24
+                }
+
+                menu.findItem(R.id.change_currency).setIcon(currencyIcon)
+
                 adapter.stockList = uiState.stockList
                 binding.progressBar.setGone()
             }
@@ -62,6 +76,20 @@ class FlowUseCase5Activity : BaseActivity() {
                 binding.progressBar.setGone()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        this.menu = menu
+        menuInflater.inflate(R.menu.flow_usecase_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.change_currency -> viewModel.changeCurrency()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStop() {
