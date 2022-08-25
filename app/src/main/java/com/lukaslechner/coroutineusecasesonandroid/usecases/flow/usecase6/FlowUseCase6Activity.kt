@@ -13,6 +13,8 @@ import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase5Description
 import com.lukaslechner.coroutineusecasesonandroid.base.flowUseCase6Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityFlowUsecase1Binding
 import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.mock.Currency
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6.datasources.NetworkExchangeRateDataSource
+import com.lukaslechner.coroutineusecasesonandroid.usecases.flow.usecase6.datasources.NetworkStockPriceDataSource
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
@@ -28,7 +30,7 @@ class FlowUseCase6Activity : BaseActivity() {
     private lateinit var menu: Menu
 
     private val viewModel: FlowUseCase6ViewModel by viewModels {
-        ViewModelFactory(NetworkStockPriceDataSource(mockApi(applicationContext)))
+        ViewModelFactory(NetworkStockPriceDataSource(mockApi(applicationContext)), NetworkExchangeRateDataSource(mockApi(applicationContext)))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

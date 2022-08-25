@@ -6,7 +6,7 @@ import com.lukaslechner.coroutineusecasesonandroid.playground.flow.utils.printWi
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
@@ -23,8 +23,8 @@ suspend fun main(): Unit = coroutineScope {
         .onEach { delay(250) }
 
     flow1
-        .flatMapConcat { flow1Emission ->
-            printWithLastPrintTime("Enter flatMapConcat with $flow1Emission")
+        .flatMapLatest { flow1Emission ->
+            printWithLastPrintTime("Enter flatMapLatest with $flow1Emission")
             flow2.map { flow2Emission ->
                 "$flow1Emission$flow2Emission"
             }

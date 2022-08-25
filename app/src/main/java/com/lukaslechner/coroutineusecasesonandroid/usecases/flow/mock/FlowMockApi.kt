@@ -10,6 +10,9 @@ interface FlowMockApi {
 
     @GET("current-stock-prices")
     suspend fun getCurrentStockPrices(): List<Stock>
+
+    @GET("/current-exchange-rate")
+    suspend fun getCurrentExchangeRate(): ExchangeRate
 }
 
 fun createFlowMockApi(interceptor: MockNetworkInterceptor): FlowMockApi {

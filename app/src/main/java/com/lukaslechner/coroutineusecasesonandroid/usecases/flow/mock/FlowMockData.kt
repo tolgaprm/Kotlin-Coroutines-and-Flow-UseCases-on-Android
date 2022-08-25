@@ -63,3 +63,12 @@ fun fakeCurrentStockPrices(context: Context): List<Stock> {
         stock.copy(currentPrice = randomPrice)
     }
 }
+
+data class ExchangeRate(val usdInEuro: Float)
+
+var currentCurrencyRate = 1.00f
+fun fakeCurrentExchangeRate(): ExchangeRate {
+    val randomIncreaseOrDecrease = Random.nextDouble(-0.01, 0.01).toFloat()
+    currentCurrencyRate += randomIncreaseOrDecrease
+    return ExchangeRate(currentCurrencyRate)
+}
