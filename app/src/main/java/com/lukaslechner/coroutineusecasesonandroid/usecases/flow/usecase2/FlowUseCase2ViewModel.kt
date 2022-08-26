@@ -27,7 +27,7 @@ class FlowUseCase2ViewModel(
      */
 
     val currentStockPriceAsLiveData: LiveData<UiState> = stockPriceDataSource
-        .latestPrice
+        .latestStockList
         .withIndex()
         .onEach { indexedValue ->
             Timber.d("Processing emission #${indexedValue.index + 1}")

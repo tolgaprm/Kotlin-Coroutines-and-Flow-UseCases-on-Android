@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 
 interface StockPriceDataSource {
-    val latestPrice: Flow<List<Stock>>
+    val latestStockList: Flow<List<Stock>>
 }
 
 class NetworkStockPriceDataSource(mockApi: FlowMockApi) : StockPriceDataSource {
 
-    override val latestPrice: Flow<List<Stock>> = flow {
+    override val latestStockList: Flow<List<Stock>> = flow {
         while (true) {
             val currentStockList = mockApi.getCurrentStockPrices()
 

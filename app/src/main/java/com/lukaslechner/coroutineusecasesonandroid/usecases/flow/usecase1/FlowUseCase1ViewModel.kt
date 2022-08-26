@@ -13,7 +13,7 @@ class FlowUseCase1ViewModel(
 ) : BaseViewModel<UiState>() {
 
     val currentStockPriceAsLiveData: LiveData<UiState> = stockPriceDataSource
-        .latestPrice
+        .latestStockList
         .map { stockList ->
             UiState.Success(stockList) as UiState
         }

@@ -11,7 +11,7 @@ class FlowUseCase3ViewModel(
 
     val currentStockPriceAsSharedFlow: Flow<UiState> =
         stockPriceDataSource
-            .latestPrice
+            .latestStockList
             .map { stockList ->
                 UiState.Success(stockList) as UiState
             }

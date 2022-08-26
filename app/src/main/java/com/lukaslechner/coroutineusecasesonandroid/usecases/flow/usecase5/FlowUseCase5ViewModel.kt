@@ -35,7 +35,7 @@ class FlowUseCase5ViewModel(
     // Additionally, you should change the currency property of all emitted stocks to the selected
     // currency so that the currency changes in the UI
     val currentStockPriceAsSharedFlow: Flow<UiState> = stockPriceDataSource
-        .latestPrice
+        .latestStockList
         .combine(selectedCurrencyFlow) { stockList, currency ->
             Timber.d("Enter combine with currency $currency")
             stockList.map { it.copy(currency = currency) }

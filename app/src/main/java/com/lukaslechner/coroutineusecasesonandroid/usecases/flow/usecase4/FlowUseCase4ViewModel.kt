@@ -12,7 +12,7 @@ class FlowUseCase4ViewModel(
 ) : BaseViewModel<UiState>() {
 
     val currentStockPriceAsSharedFlow: Flow<UiState> = stockPriceDataSource
-        .latestPrice
+        .latestStockList
         .map { stockList ->
             val totalMarketCap = stockList
                 .map { it.marketCap }

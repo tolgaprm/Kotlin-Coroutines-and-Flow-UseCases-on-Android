@@ -40,7 +40,7 @@ class FlowUseCase6ViewModel(
     // if the currency of the stocks is Dollar, no calculation should happen and the ExchangeRateDataSource
     // also shouldn't emit values (hint: use the latestExchangeRate flow as a sharedFlow)
     val currentStockPriceAsSharedFlow: Flow<UiState> = stockPriceDataSource
-        .latestPrice
+        .latestStockList
         .combine(selectedCurrencyFlow) { stockList, currency ->
             Timber.d("Enter combine with currency $currency")
             stockList.map { it.copy(currency = currency) }
