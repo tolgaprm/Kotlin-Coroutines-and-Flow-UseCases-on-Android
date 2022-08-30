@@ -9,7 +9,7 @@ class FlowUseCase3ViewModel(
     stockPriceDataSource: StockPriceDataSource
 ) : BaseViewModel<UiState>() {
 
-    val currentStockPriceAsSharedFlow: Flow<UiState> =
+    val currentStockPriceAsStateFlow: StateFlow<UiState> =
         stockPriceDataSource
             .latestStockList
             .map { stockList ->

@@ -11,7 +11,7 @@ class FlowUseCase4ViewModel(
     defaultDispatcher: CoroutineDispatcher
 ) : BaseViewModel<UiState>() {
 
-    val currentStockPriceAsSharedFlow: Flow<UiState> = stockPriceDataSource
+    val currentStockPriceAsStateFlow: StateFlow<UiState> = stockPriceDataSource
         .latestStockList
         .map { stockList ->
             val totalMarketCap = stockList
@@ -27,5 +27,4 @@ class FlowUseCase4ViewModel(
             initialValue = UiState.Loading,
             started = SharingStarted.WhileSubscribed(5000)
         )
-
 }

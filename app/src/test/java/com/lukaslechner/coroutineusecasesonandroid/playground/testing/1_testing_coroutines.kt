@@ -33,7 +33,7 @@ class TestClass {
         val virtualTimeStart = currentTime
 
         functionThatStartsNewCoroutine()
-        advanceTimeBy(1000)
+        advanceTimeBy(1001)
 
         val realTimeDuration = System.currentTimeMillis() - realTimeStart
         val virtualTimeDuration = currentTime - virtualTimeStart

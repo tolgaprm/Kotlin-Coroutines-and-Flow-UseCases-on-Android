@@ -34,7 +34,7 @@ class FlowUseCase3Activity : BaseActivity() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.currentStockPriceAsSharedFlow.collect { uiState ->
+                viewModel.currentStockPriceAsStateFlow.collect { uiState ->
                     render(uiState)
                 }
             }
