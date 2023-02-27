@@ -12,8 +12,6 @@ class FactorialCalculator(
         numberOfCoroutines: Int
     ): BigInteger {
 
-        var result: BigInteger = BigInteger.ONE
-
         return withContext(defaultDispatcher) {
             val subRanges = createSubRangeList(factorialOf, numberOfCoroutines)
 

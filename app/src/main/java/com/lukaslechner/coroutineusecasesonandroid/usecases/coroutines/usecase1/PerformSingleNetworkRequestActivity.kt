@@ -3,6 +3,7 @@ package com.lukaslechner.coroutineusecasesonandroid.usecases.coroutines.usecase1
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseActivity
 import com.lukaslechner.coroutineusecasesonandroid.base.useCase1Description
 import com.lukaslechner.coroutineusecasesonandroid.databinding.ActivityPerformsinglenetworkrequestBinding
@@ -10,8 +11,15 @@ import com.lukaslechner.coroutineusecasesonandroid.utils.fromHtml
 import com.lukaslechner.coroutineusecasesonandroid.utils.setGone
 import com.lukaslechner.coroutineusecasesonandroid.utils.setVisible
 import com.lukaslechner.coroutineusecasesonandroid.utils.toast
+import kotlinx.coroutines.launch
 
 class PerformSingleNetworkRequestActivity : BaseActivity() {
+
+    init {
+        lifecycleScope.launch{
+
+        }
+    }
 
     override fun getToolbarTitle() = useCase1Description
 

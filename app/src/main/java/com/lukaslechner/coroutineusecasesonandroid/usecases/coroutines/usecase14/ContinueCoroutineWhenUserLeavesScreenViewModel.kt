@@ -2,7 +2,9 @@ package com.lukaslechner.coroutineusecasesonandroid.usecases.coroutines.usecase1
 
 import androidx.lifecycle.viewModelScope
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseViewModel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 class ContinueCoroutineWhenUserLeavesScreenViewModel(
     private var repository: AndroidVersionRepository
@@ -14,6 +16,7 @@ class ContinueCoroutineWhenUserLeavesScreenViewModel(
 
     fun loadData() {
         uiState.value = UiState.Loading.LoadFromDb
+
 
         viewModelScope.launch {
             val localVersions = repository.getLocalAndroidVersions()

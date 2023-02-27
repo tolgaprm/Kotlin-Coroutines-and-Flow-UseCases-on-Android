@@ -3,6 +3,8 @@ package com.lukaslechner.coroutineusecasesonandroid.usecases.coroutines.usecase1
 import com.lukaslechner.coroutineusecasesonandroid.mock.AndroidVersion
 import com.lukaslechner.coroutineusecasesonandroid.mock.MockApi
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class AndroidVersionRepository(
     private var database: AndroidVersionDao,
@@ -15,10 +17,21 @@ class AndroidVersionRepository(
     }
 
     suspend fun loadAndStoreRemoteAndroidVersions(): List<AndroidVersion> {
+
+        return scope.async {
+            val recentVersions = api.getRecentAndroidVersions()
+            for (recentVersion in recentVersions) {
+                database.insert(recentVersion.mapToEntity())
+            }
+            recentVersions
+        }.await()
+
         return emptyList()
     }
 
     fun clearDatabase() {
-
+        scope.launch {
+            database.clear()
+        }
     }
 }
