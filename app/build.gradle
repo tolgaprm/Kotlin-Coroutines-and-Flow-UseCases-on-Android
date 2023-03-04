@@ -54,8 +54,9 @@ android {
 
 dependencies {
 
+    testImplementation 'junit:junit:4.12'
     def lifecycle_version = "2.4.1"
-    def coroutines_version = "1.6.3"
+    def coroutines_version = "1.6.4"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
